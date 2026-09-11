@@ -147,13 +147,40 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 }
+
+@utility veil {
+  background-image: var(--gradient-veil);
+}
+
+@utility glow {
+  background-image: var(--gradient-glow);
+}
+
