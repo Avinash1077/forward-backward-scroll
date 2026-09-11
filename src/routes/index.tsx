@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative w-full overflow-x-hidden bg-background">
+    <div className="relative w-full bg-background">
       <Navbar />
       <main>
         <Hero />
