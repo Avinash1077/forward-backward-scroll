@@ -4,14 +4,14 @@ import { useSectionScroll } from "./useSectionScroll";
 
 const people = [
   {
-    img: clubInChargeImg,
+    img: "/images/leadership/club-incharge.jpg",
     name: "Name Here",
     role: "Faculty Coordinator, CSE Clubs",
     description:
       "Coordinating both the Research Club and the Editing Club, connecting students with projects, mentors and opportunities — and making sure every idea gets a chance to be built, tested and shared.",
   },
   {
-    img: clubInCharge2Img,
+    img: "/images/leadership/club-incharge-2.jpg",
     name: "Name Here",
     role: "Assistant Faculty Coordinator, CSE Clubs",
     description:
