@@ -201,8 +201,8 @@ export function ClubInCharge() {
           Club In-Charge
         </motion.h2>
         <div className="absolute inset-0">
-          <PersonOne p={p} person={people[0]} />
-          <PersonTwo p={p} person={people[1]} />
+          <PersonOne p={p} person={people[0]!} />
+          <PersonTwo p={p} person={people[1]!} />
         </div>
         <motion.div
           style={{ opacity: headingOpacity }}
