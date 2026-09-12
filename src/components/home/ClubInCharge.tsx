@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { motion, useTransform, type MotionValue } from "motion/react";
 import { useSectionScroll } from "./useSectionScroll";
-import clubInChargeImg from "/images/leadership/club-incharge.jpg";
-import clubInCharge2Img from "/images/leadership/club-incharge-2.jpg";
 
 const people = [
   {
