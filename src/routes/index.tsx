@@ -3,11 +3,10 @@ import researchImg from "@/assets/research.jpg";
 import editingImg from "@/assets/editing.jpg";
 import { Navbar } from "@/components/home/Navbar";
 import { Hero } from "@/components/home/Hero";
-import { Department } from "@/components/home/Department";
 import { Leadership } from "@/components/home/Leadership";
-import { ClubInCharge } from "@/components/home/ClubInCharge";
 import { ClubPreview } from "@/components/home/ClubPreview";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,9 +36,7 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <Department />
         <Leadership />
-        <ClubInCharge />
         <ClubPreview
           eyebrow="Research Club"
           backdropWord="RESEARCH"
@@ -71,21 +68,7 @@ function Index() {
         />
         <FinalCTA />
       </main>
-      <footer className="border-t border-border py-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground sm:flex-row sm:px-6">
-          <p className="font-display font-semibold text-foreground">
-            Computer Science &amp; Engineering
-          </p>
-          <nav className="flex flex-wrap justify-center gap-5">
-            <a href="/" className="hover:text-foreground">Home</a>
-            <a href="/research-club" className="hover:text-foreground">Research Club</a>
-            <a href="/editing-club" className="hover:text-foreground">Editing Club</a>
-            <a href="/gallery" className="hover:text-foreground">Gallery</a>
-            <a href="/events" className="hover:text-foreground">Events</a>
-          </nav>
-          <p>© {new Date().getFullYear()} CSE Department Clubs</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

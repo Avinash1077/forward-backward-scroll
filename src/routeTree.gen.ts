@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EditingClubRouteImport } from './routes/editing-club'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ResearchClubRouteImport } from './routes/research-club'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditingClubRoute = EditingClubRouteImport.update({
+  id: '/editing-club',
+  path: '/editing-club',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchClubRoute = ResearchClubRouteImport.update({
+  id: '/research-club',
+  path: '/research-club',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/editing-club': typeof EditingClubRoute
+  '/events': typeof EventsRoute
+  '/research-club': typeof ResearchClubRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/editing-club': typeof EditingClubRoute
+  '/events': typeof EventsRoute
+  '/research-club': typeof ResearchClubRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/editing-club': typeof EditingClubRoute
+  '/events': typeof EventsRoute
+  '/research-club': typeof ResearchClubRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/editing-club' | '/events' | '/research-club'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/editing-club' | '/events' | '/research-club'
+  id: '__root__' | '/' | '/editing-club' | '/events' | '/research-club'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EditingClubRoute: typeof EditingClubRoute
+  EventsRoute: typeof EventsRoute
+  ResearchClubRoute: typeof ResearchClubRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/editing-club': {
+      id: '/editing-club'
+      path: '/editing-club'
+      fullPath: '/editing-club'
+      preLoaderRoute: typeof EditingClubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-club': {
+      id: '/research-club'
+      path: '/research-club'
+      fullPath: '/research-club'
+      preLoaderRoute: typeof ResearchClubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EditingClubRoute: EditingClubRoute,
+  EventsRoute: EventsRoute,
+  ResearchClubRoute: ResearchClubRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

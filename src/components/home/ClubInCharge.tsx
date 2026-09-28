@@ -1,50 +1,58 @@
-import { useRef } from "react";
-import { motion, useTransform } from "motion/react";
-import { useSectionScroll } from "./useSectionScroll";
+import { motion } from "@/lib/motion";
 
-export function ClubInCharge() {
-  const ref = useRef<HTMLElement | null>(null);
-  const p = useSectionScroll(ref);
-
-  const scale = useTransform(p, [0, 0.5, 1], [1.3, 1, 1.05]);
-  const clip = useTransform(
-    p,
-    [0, 0.5],
-    ["inset(35% 12% 35% 12% round 24px)", "inset(0% 0% 0% 0% round 24px)"],
-  );
-  const textX = useTransform(p, [0.15, 0.55], [120, 0]);
-  const textOpacity = useTransform(p, [0.15, 0.45, 0.9, 1], [0, 1, 1, 0.3]);
-  const bgOpacity = useTransform(p, [0, 0.5, 1], [0, 1, 0]);
+export function ClubInCharge({
+  profiles = [
+    {
+      image: "/images/leadership/club-incharge.jpg",
+      imageAlt: "Club In-Charge",
+      name: "Name Here",
+      title: "Club In-Charge",
+    },
+  ],
+}: {
+  profiles?: Array<{
+    image: string;
+    imageAlt: string;
+    imageFit?: "cover" | "contain";
+    name: string;
+    title: string;
+  }>;
+}) {
 
   return (
-    <section ref={ref} className="relative overflow-hidden py-24 sm:py-32">
-      <motion.div
-        style={{ opacity: bgOpacity }}
-        className="pointer-events-none absolute inset-0 bg-secondary/40"
-      />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr]">
-        <motion.div style={{ clipPath: clip }} className="aspect-[4/5] overflow-hidden will-change-transform">
-          <motion.img
-            src="/images/leadership/club-incharge.jpg"
-            alt="Club In-Charge"
-            width={1100}
-            height={1300}
-            loading="lazy"
-            style={{ scale }}
-            className="h-full w-full object-cover will-change-transform"
-          />
-        </motion.div>
-        <motion.div style={{ x: textX, opacity: textOpacity }} className="will-change-transform">
-          <p className="text-xs uppercase tracking-[0.35em] text-accent">Club In-Charge</p>
-          <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Name Here</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Faculty Coordinator, CSE Clubs</p>
-          <p className="mt-6 text-base text-muted-foreground sm:text-lg">
-            Coordinating both the Research Club and the Editing Club, connecting students with
-            projects, mentors and opportunities — and making sure every idea gets a chance to be
-            built, tested and shared.
-          </p>
-        </motion.div>
+    <section className="relative overflow-hidden py-20 sm:py-28">
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-border bg-secondary/20 p-3 sm:gap-8 sm:p-6">
+          {profiles.map((profile, index) => (
+            <motion.div
+              key={profile.image}
+              initial={{ x: index === 0 ? -96 : 96, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="min-w-0 text-center"
+            >
+              <div className="aspect-[3/4] overflow-hidden rounded-xl border border-border bg-background">
+                <img
+                  src={profile.image}
+                  alt={profile.imageAlt}
+                  width={1100}
+                  height={1300}
+                  loading="lazy"
+                  className={`h-full w-full ${profile.imageFit === "contain" ? "object-contain" : "object-cover"}`}
+                />
+              </div>
+              <div className="px-2 pt-4">
+                <p className="text-sm font-semibold sm:text-base">{profile.name}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                  {profile.title}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+

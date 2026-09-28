@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SmoothScrollProvider } from "../components/motion/SmoothScrollProvider";
+import { ScrollManager } from "../components/motion/ScrollManager";
+import { ScrollChrome } from "../components/motion/ScrollProgressBar";
 
 function NotFoundComponent() {
   return (
@@ -124,10 +127,32 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    const preventContextMenu = (event: MouseEvent) => event.preventDefault();
+    const preventCopy = (event: ClipboardEvent) => event.preventDefault();
+    const preventDrag = (event: DragEvent) => event.preventDefault();
+
+    document.addEventListener("contextmenu", preventContextMenu);
+    document.addEventListener("copy", preventCopy);
+    document.addEventListener("cut", preventCopy);
+    document.addEventListener("dragstart", preventDrag);
+
+    return () => {
+      document.removeEventListener("contextmenu", preventContextMenu);
+      document.removeEventListener("copy", preventCopy);
+      document.removeEventListener("cut", preventCopy);
+      document.removeEventListener("dragstart", preventDrag);
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SmoothScrollProvider>
+        <ScrollManager />
+        <ScrollChrome />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </SmoothScrollProvider>
     </QueryClientProvider>
   );
 }

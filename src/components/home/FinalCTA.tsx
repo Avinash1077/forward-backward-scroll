@@ -1,5 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { useRef } from "react";
-import { motion, useTransform } from "motion/react";
+import { motion, useTransform } from "@/lib/motion";
 import { useSectionScroll } from "./useSectionScroll";
 
 export function FinalCTA() {
@@ -40,15 +41,15 @@ export function FinalCTA() {
             style={{ y: buttonsY, opacity: buttonsOpacity }}
             className="mt-10 flex flex-wrap justify-center gap-3 will-change-transform"
           >
-            <a
-              href="/research-club"
+            <Link
+              to="/research-club"
               className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
             >
               Research Club
-            </a>
+            </Link>
             <a
-              href="/editing-club"
-              className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-transform hover:scale-105"
+              href="/pixel_pirates_complete_website%20(1).html"
+              className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
             >
               Editing Club
             </a>
@@ -58,3 +59,4 @@ export function FinalCTA() {
     </section>
   );
 }
+

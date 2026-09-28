@@ -1,23 +1,27 @@
 import { useRef } from "react";
-import { motion, useTransform, type MotionValue } from "motion/react";
+import { motion, useTransform, type MotionValue } from "@/lib/motion";
 import { useSectionScroll } from "./useSectionScroll";
 
 const people = [
-  { role: "Head of Club", img: "/images/leadership/head-of-club.jpg" },
-  { role: "Vice Principal", img: "/images/leadership/vice-principal.jpg" },
-  { role: "Head of Department", img: "/images/leadership/hod.jpg" },
+  { name: "Dr.SUNDRA RAMAN K.A", role: "Principal", img: "/SUNDRARAMAN.jpeg" },
+  { name: "Dr.Magesh Balakrishnan", role: "Vice Principal", img: "/magesh.jpeg" },
+  { name: "Mrs.Pradeepa k", role: "Head of the Department", img: "/pradeepak.jpeg" },
+  { name: "Dharma Prakash v", role: "Head of the Department", img: "/python.jpeg" },
+  { name: "Suganya s", role: "Club In-Charge", img: "/suganya_mam (2).png" },
 ];
 
 function Person({
   p,
   index,
+  name,
   role,
   img,
 }: {
   p: MotionValue<number>;
   index: number;
+  name: string;
   role: string;
-  img: string;
+  img?: string;
 }) {
   const step = 1 / people.length;
   const start = index * step;
@@ -39,21 +43,26 @@ function Person({
       style={{ opacity, scale, y, filter: blur }}
       className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 will-change-transform sm:flex-row sm:gap-12"
     >
-      <img
-        src={img}
-        alt={role}
-        width={900}
-        height={1100}
-        loading="lazy"
-        className="h-52 w-44 rounded-2xl border border-border object-cover sm:h-96 sm:w-80"
-      />
+      {img ? (
+        <img
+          src={img}
+          alt={role}
+          width={900}
+          height={1100}
+          loading="lazy"
+          className="h-52 w-44 rounded-2xl border border-border object-cover sm:h-96 sm:w-80"
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          className="flex h-52 w-44 items-center justify-center rounded-2xl border border-border bg-secondary text-7xl font-bold text-muted-foreground sm:h-96 sm:w-80"
+        >
+          P
+        </div>
+      )}
       <div className="text-center sm:text-left">
         <p className="text-xs uppercase tracking-[0.35em] text-primary">{role}</p>
-        <h3 className="mt-3 text-3xl font-bold sm:text-6xl">Name Here</h3>
-        <p className="mt-4 max-w-md text-sm text-muted-foreground sm:text-base">
-          Guiding the department&apos;s students with vision, mentorship and a commitment to
-          research and creative excellence.
-        </p>
+        <h3 className="mt-3 text-3xl font-bold sm:text-6xl">{name}</h3>
       </div>
     </motion.div>
   );
@@ -67,7 +76,7 @@ export function Leadership() {
   const barScale = useTransform(p, [0, 1], [0, 1]);
 
   return (
-    <section ref={ref} className="relative h-[400vh]">
+    <section ref={ref} className="relative h-[500vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="glow absolute inset-0" />
         <motion.h2
@@ -78,7 +87,14 @@ export function Leadership() {
         </motion.h2>
         <div className="absolute inset-0">
           {people.map((person, i) => (
-            <Person key={person.role} p={p} index={i} role={person.role} img={person.img} />
+            <Person
+              key={person.name}
+              p={p}
+              index={i}
+              name={person.name}
+              role={person.role}
+              img={person.img}
+            />
           ))}
         </div>
         <div className="absolute inset-x-0 bottom-16 mx-auto h-px w-40 bg-border sm:w-64">

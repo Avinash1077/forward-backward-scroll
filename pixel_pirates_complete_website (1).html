@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIXEL PIRATES | Digital Creativity & Filmmaking Club — PERI IT</title>
+  
+  <!-- Fonts: Space Grotesk for cinematic headers & Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace'],
+          },
+          colors: {
+            pirate: {
+              black: 'var(--bg-black)',
+              dark: 'var(--bg-dark)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              gold: '#f59e0b',
+              amber: '#fbbf24',
+              red: '#ef4444',
+              cyan: '#06b6d4',
+              silver: 'var(--text-silver)'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'float': 'float 5s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* CSS Variables for Dynamic Light & Dark Mode */
+    :root {
+      /* Studio Light Theme Defaults */
+      --bg-black: #f8fafc;
+      --bg-dark: #f1f5f9;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --text-silver: #64748b;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --film-grain-color: rgba(217, 119, 6, 0.05);
+      --cinema-glow: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.12) 0%, rgba(248, 250, 252, 0.98) 75%);
+    }
+
+    .dark {
+      /* Cinematic Dark Theme */
+      --bg-black: #07080b;
+      --bg-dark: #0e1117;
+      --bg-card: #131722;
+      --border-color: #232936;
+      --text-silver: #94a3b8;
+      --text-primary: #ffffff;
+      --text-secondary: #cbd5e1;
+      --film-grain-color: rgba(245, 158, 11, 0.08);
+      --cinema-glow: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.14) 0%, rgba(7, 8, 11, 0.98) 75%);
+    }
+
+    /* Film texture & cinema atmosphere */
+    .film-grain {
+      background-image: radial-gradient(var(--film-grain-color) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .cinema-gradient {
+      background: var(--cinema-glow);
+    }
+    .grid-lines {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    }
+    .dark .grid-lines {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Light Theme Typography & Element Adjustments */
+    html:not(.dark) {
+      color: #334155;
+    }
+    html:not(.dark) .text-white {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-gray-100 {
+      color: #1e293b !important;
+    }
+    html:not(.dark) .text-gray-200 {
+      color: #334155 !important;
+    }
+    html:not(.dark) .text-gray-300 {
+      color: #475569 !important;
+    }
+    html:not(.dark) .text-gray-400 {
+      color: #64748b !important;
+    }
+    html:not(.dark) .text-gray-500 {
+      color: #94a3b8 !important;
+    }
+    html:not(.dark) .bg-pirate-black\/80 {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+    html:not(.dark) .bg-pirate-black\/95 {
+      background-color: rgba(255, 255, 255, 0.96) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/95 {
+      background-color: rgba(248, 250, 252, 0.96) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/70 {
+      background-color: rgba(241, 245, 249, 0.85) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/50 {
+      background-color: rgba(241, 245, 249, 0.65) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/40 {
+      background-color: rgba(241, 245, 249, 0.5) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/30 {
+      background-color: rgba(241, 245, 249, 0.4) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/60 {
+      background-color: rgba(241, 245, 249, 0.75) !important;
+    }
+    html:not(.dark) .bg-pirate-dark\/80 {
+      background-color: rgba(241, 245, 249, 0.9) !important;
+    }
+    html:not(.dark) .bg-pirate-card\/60 {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+    }
+    html:not(.dark) .bg-pirate-card\/70 {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+    html:not(.dark) .bg-pirate-card\/90 {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+    }
+    html:not(.dark) .bg-white\/5 {
+      background-color: rgba(15, 23, 42, 0.05) !important;
+    }
+    html:not(.dark) .border-white\/10 {
+      border-color: rgba(15, 23, 42, 0.12) !important;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-black);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+
+    .hero-pirate-title {
+      font-family: "Stardos Stencil", serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .topbar-pixel-pirates {
+      align-items: center;
+      display: flex;
+      font-family: "Stardos Stencil", Georgia, serif;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 0.015em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .topbar-pixel-pirates .topbar-pixel { color: var(--text-primary); }
+    .topbar-pixel-pirates .topbar-pirates { color: #fbbf24; margin-left: 0.18em; }
+
+    html.cinematic-motion-ready .cinematic-reveal {
+      filter: blur(14px);
+      opacity: 0;
+      transform: perspective(1000px) translate3d(0, 68px, 0) rotateX(-12deg) scale(0.97);
+      transition:
+        opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    html.cinematic-motion-ready .cinematic-reveal-headline {
+      transform: perspective(1000px) translate3d(0, 44px, 0) scale(0.94);
+    }
+
+    html.cinematic-motion-ready .cinematic-reveal-card {
+      transform: perspective(1000px) translate3d(0, 92px, 0) rotateX(-20deg) scale(0.92);
+      transition-duration: 1.4s;
+    }
+
+    html.cinematic-motion-ready .cinematic-reveal.is-visible {
+      filter: blur(0);
+      opacity: 1;
+      transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0) scale(1);
+    }
+
+    .cinematic-bg-drift {
+      transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .cinematic-section-glow {
+      background: radial-gradient(ellipse 42% 36% at 50% var(--glow-y, 50%), rgb(245 158 11 / 14%), transparent 78%);
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), background-position 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cinematic-section-glow.is-active {
+      opacity: 1;
+    }
+
+    .pixel-pirates-fallback {
+      align-items: center;
+      color: #fbbf24;
+      display: flex;
+      font-family: "Stardos Stencil", Georgia, serif;
+      font-size: clamp(1rem, 4vw, 3rem);
+      font-weight: 700;
+      height: 100%;
+      justify-content: center;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 18px rgb(245 158 11 / 45%);
+      width: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html.cinematic-motion-ready .cinematic-reveal,
+      html.cinematic-motion-ready .cinematic-reveal-card,
+      html.cinematic-motion-ready .cinematic-reveal-headline {
+        filter: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .cinematic-bg-drift {
+        transform: none !important;
+        transition: none;
+      }
+    }
+  </style>
+
+  <!-- Prevent flash of unstyled theme on initial load -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('pixel_pirates_theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+      <style>
+        .member-spotlight-backdrop {
+          align-items: center;
+          background: color-mix(in srgb, var(--bg-black) 82%, transparent);
+          backdrop-filter: blur(10px);
+          display: flex;
+          inset: 0;
+          justify-content: center;
+          opacity: 0;
+          padding: 1.5rem;
+          pointer-events: none;
+          position: fixed;
+          transition: opacity 220ms ease;
+          z-index: 80;
+        }
+
+        .member-spotlight-backdrop.is-open { opacity: 1; pointer-events: auto; }
+        .member-spotlight-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-color);
+          border-radius: 1.5rem;
+          box-shadow: 0 30px 90px rgb(0 0 0 / 55%), 0 0 0 1px rgb(245 158 11 / 15%);
+          max-height: min(90vh, 720px);
+          max-width: 680px;
+          overflow: auto;
+          position: relative;
+          transform: translateY(18px) scale(0.94);
+          transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+          width: 100%;
+        }
+        .member-spotlight-backdrop.is-open .member-spotlight-card { transform: translateY(0) scale(1); }
+        .member-spotlight-card .member-spotlight-image { align-items: center; background: linear-gradient(180deg, color-mix(in srgb, var(--border-color) 65%, transparent), var(--bg-card)); display: flex; justify-content: center; min-height: 280px; padding: 2rem; }
+        .member-spotlight-card .member-spotlight-image > div { transform: scale(1.25); }
+        .member-spotlight-card .member-spotlight-copy { padding: 1.5rem 1.75rem 1.75rem; text-align: center; }
+        .member-spotlight-card .member-spotlight-copy h4 { color: var(--text-primary); font-family: monospace; font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+        .member-spotlight-card .member-spotlight-copy p { color: #fbbf24; font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem; text-transform: uppercase; }
+        .member-spotlight-close { align-items: center; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 999px; color: var(--text-primary); cursor: pointer; display: flex; font-size: 1.25rem; height: 2.5rem; justify-content: center; position: absolute; right: 1rem; top: 1rem; width: 2.5rem; z-index: 1; }
+        .member-spotlight-card .member-spotlight-copy .text-gray-300 { color: var(--text-secondary) !important; }
+        #team .group { cursor: pointer; transition: filter 220ms ease, opacity 220ms ease, transform 220ms ease; }
+        #team .group:hover { transform: translateY(-4px); }
+        body.member-spotlight-open #team .group { filter: blur(4px); opacity: 0.45; }
+      </style>
+</head>
+<body class="bg-pirate-black text-gray-200 font-sans antialiased selection:bg-amber-500 selection:text-black relative overflow-x-hidden">
+
+  <!-- Ambient Light Effects -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/3 right-10 w-[30rem] h-[30rem] bg-cyan-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 film-grain opacity-60"></div>
+    <div class="absolute inset-0 grid-lines pointer-events-none"></div>
+    <div class="cinematic-section-glow"></div>
+  </div>
+
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-pirate-black/80 backdrop-blur-md border-b border-pirate-border/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <button onclick="goBack()" class="mr-3 p-2 rounded-lg bg-pirate-card hover:bg-amber-500/10 text-amber-500 border border-pirate-border transition-all" aria-label="Go back to the previous page" title="Go back">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+      </button>
+
+      <!-- Brand Identity -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-700/30 p-1 border border-amber-500/40 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40 group-hover:border-amber-400 group-hover:scale-105 transition-all overflow-hidden bg-pirate-card">
+          <img 
+            src="pixel_pirates_vector.svg"
+            alt="Pixel Pirates Logo" 
+            class="w-full h-full object-contain filter drop-shadow"
+            onerror="this.onerror=null; const mark=document.createElement('span'); mark.className='pixel-pirates-fallback'; mark.textContent='PP'; mark.setAttribute('role','img'); mark.setAttribute('aria-label','Pixel Pirates'); this.replaceWith(mark);"
+          >
+        </div>
+        <div class="flex flex-col">
+          <span class="topbar-pixel-pirates">
+            <span class="topbar-pixel">PIXEL</span>
+            <span class="topbar-pirates">PIRATES</span>
+            <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          </span>
+          <span class="text-[10px] tracking-wider text-amber-500/90 uppercase font-semibold">PERI Institute of Technology</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium text-gray-300">
+        <a href="#home" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Home</a>
+        <a href="#about" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">About</a>
+        <a href="#create" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Create</a>
+        <a href="#process" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Process</a>
+        <a href="#learn" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Learn</a>
+        <a href="#activities" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Activities</a>
+        <a href="#team" class="px-3 py-2 rounded-md hover:text-amber-400 hover:bg-white/5 transition-all">Team</a>
+        
+        <button onclick="toggleTheme()" id="desktop-theme-toggle" class="p-2 ml-2 rounded-lg bg-pirate-card hover:bg-amber-500/10 text-amber-500 border border-pirate-border transition-all flex items-center justify-center" aria-label="Toggle theme">
+          <!-- Sun Icon (shown in dark mode to switch to light) -->
+          <svg id="desktop-sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <!-- Moon Icon (shown in light mode to switch to dark) -->
+          <svg id="desktop-moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <button onclick="openJoinModal()" class="ml-3 px-4 py-2 text-xs font-mono uppercase tracking-wider font-bold rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-pirate-black hover:brightness-110 shadow-lg shadow-amber-500/20 active:scale-95 transition-all">
+          Join Us
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Controls -->
+      <div class="flex items-center lg:hidden gap-2">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg bg-pirate-card text-amber-500 border border-pirate-border" aria-label="Toggle theme">
+          <svg id="mobile-sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="mobile-moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <button onclick="openJoinModal()" class="px-3 py-1.5 text-xs font-mono font-bold rounded-md bg-amber-500 text-black">
+          Join
+        </button>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-pirate-card text-gray-300 hover:text-white border border-pirate-border focus:outline-none" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-pirate-border/60 bg-pirate-dark/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2">
+      <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">Home</a>
+      <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">About</a>
+      <a href="#create" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">What We Create</a>
+      <a href="#process" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">Process</a>
+      <a href="#learn" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">Learning</a>
+      <a href="#activities" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">Activities</a>
+      <a href="#team" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base hover:bg-white/5 hover:text-amber-400">Team</a>
+      <div class="pt-2 border-t border-pirate-border/60 flex items-center justify-between">
+        <span class="text-xs font-mono uppercase text-gray-400">Theme</span>
+        <button onclick="toggleTheme()" class="px-3 py-1 rounded-md bg-pirate-card border border-pirate-border text-xs font-mono text-amber-500">
+          Toggle Light / Dark
+        </button>
+      </div>
+      <a href="#join" onclick="toggleMobileMenu(); openJoinModal();" class="block px-3 py-2 rounded-md text-base font-bold text-amber-400">Join Pixel Pirates →</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-20">
+
+    <section id="home" class="min-h-[92vh] flex items-center justify-center relative cinema-gradient border-b border-pirate-border/40 px-4 sm:px-6 lg:px-8 py-16">
+      
+      <!-- Camera Viewfinder Overlay HUD -->
+      <div class="absolute inset-4 sm:inset-10 border border-pirate-border/30 rounded-2xl pointer-events-none hidden md:block">
+        <div class="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-amber-500/80"></div>
+        <div class="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-amber-500/80"></div>
+        <div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-amber-500/80"></div>
+        <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-amber-500/80"></div>
+        
+        <div class="absolute top-4 left-6 text-[11px] font-mono text-pirate-silver/70 tracking-wider flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+          <span>REC [24FPS]</span>
+          <span class="text-amber-500/80">4K DCI</span>
+        </div>
+        <div class="absolute top-4 right-6 text-[11px] font-mono text-pirate-silver/70 tracking-wider">
+          ISO 400 · 1/50s · f/2.8 · 5600K
+        </div>
+        <div class="absolute bottom-4 left-6 text-[11px] font-mono text-pirate-silver/70 tracking-wider">
+          PERI IT // CREATIVE UNIT
+        </div>
+        <div class="absolute bottom-4 right-6 text-[11px] font-mono text-pirate-silver/70 tracking-wider">
+          RATIO 2.39:1
+        </div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 pointer-events-none opacity-20">
+          <div class="w-full h-[1px] bg-amber-400 absolute top-1/2"></div>
+          <div class="h-full w-[1px] bg-amber-400 absolute left-1/2"></div>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <!-- Centerpiece Brand Logo -->
+        <div class="flex justify-center mb-6">
+          <div class="relative group">
+            <div class="absolute -inset-3 bg-gradient-to-r from-amber-500/30 via-amber-400/20 to-amber-600/30 rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition-opacity duration-700 animate-pulse-slow"></div>
+            <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-pirate-card/90 border-2 border-amber-500/40 p-0 shadow-2xl flex items-center justify-center backdrop-blur-md group-hover:scale-105 group-hover:border-amber-400 transition-all duration-500 overflow-hidden">
+              <img 
+                src="pixel_pirates_vector.svg"
+                alt="Pixel Pirates Lighthouse Emblem" 
+                class="w-full h-full object-contain"
+                onerror="this.onerror=null; const mark=document.createElement('span'); mark.className='pixel-pirates-fallback'; mark.textContent='PP'; mark.setAttribute('role','img'); mark.setAttribute('aria-label','Pixel Pirates'); this.replaceWith(mark);"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-mono tracking-wide mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          Digital Creativity & Filmmaking Club
+        </div>
+
+        <h1 class="hero-pirate-title text-4xl sm:text-6xl md:text-7xl text-white mb-6 uppercase">
+          PIXEL <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">PIRATES</span>
+        </h1>
+
+        <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-100 mb-4 tracking-tight">
+          Create with purpose. Learn the craft. Pass it forward.
+        </p>
+
+        <p class="max-w-2xl mx-auto text-sm sm:text-base text-gray-400 mb-10 leading-relaxed">
+          A student-driven creative club at <strong class="text-white font-medium">PERI Institute of Technology</strong>, focused on filmmaking, visual storytelling, digital creativity, and meaningful content creation.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#create" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-mono text-sm uppercase tracking-wider font-bold bg-gradient-to-r from-amber-500 to-amber-600 text-pirate-black hover:brightness-110 shadow-lg shadow-amber-500/25 active:scale-95 transition-all text-center">
+            Explore Our Work
+          </a>
+          <button onclick="openJoinModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-mono text-sm uppercase tracking-wider font-semibold border border-pirate-border hover:border-amber-500/60 bg-pirate-card/60 hover:bg-pirate-card text-white active:scale-95 transition-all text-center">
+            Join the Club
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-pirate-dark/70 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5 space-y-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">The Philosophy</span>
+            <p class="text-sm font-semibold tracking-wider text-gray-400 uppercase">We don't just create content.</p>
+            <h2 class="font-mono text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight uppercase">
+              We Learn How <br/><span class="text-amber-400">To Create It.</span>
+            </h2>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed border-l-2 border-amber-500/40 pl-6">
+            <p>
+              Pixel Pirates is a student-driven creative club built around <strong class="text-white">content, craft, and filmmaking</strong>.
+            </p>
+            <p class="text-gray-400 text-base">
+              We create professional-quality content to promote and document college events while using every production as an opportunity to learn. From <span class="text-gray-200">story development and scripting to cinematography, editing, and final delivery</span>, we learn by working on real projects.
+            </p>
+            <blockquote class="p-4 rounded-xl bg-pirate-card border border-amber-500/20 text-amber-300 font-mono text-sm sm:text-base italic">
+              "Every production is a classroom. Every project is an opportunity to grow."
+            </blockquote>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE IDEA: The 8 Filmmaking Pillars -->
+    <section class="py-20 relative border-b border-pirate-border/40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold mb-2 block">Our Core Idea</span>
+        <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4">
+          We Create. We Learn Filmmaking. <span class="text-amber-400">We Pass It Forward.</span>
+        </h2>
+        
+        <p class="max-w-2xl mx-auto text-gray-400 text-base mb-12">
+          Being a content creator is more than knowing how to operate a camera or use editing software. Great content comes from understanding the fundamentals of filmmaking:
+        </p>
+
+        <!-- 8 Pillars Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto mb-12">
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">01</span>
+            <span class="font-semibold text-white">Storytelling</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">02</span>
+            <span class="font-semibold text-white">Scriptwriting</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">03</span>
+            <span class="font-semibold text-white">Framing</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">04</span>
+            <span class="font-semibold text-white">Camera Angles</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">05</span>
+            <span class="font-semibold text-white">Cinematography</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">06</span>
+            <span class="font-semibold text-white">Lighting</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">07</span>
+            <span class="font-semibold text-white">Audio</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all flex flex-col items-center">
+            <span class="text-amber-400 font-mono text-xs mb-1">08</span>
+            <span class="font-semibold text-white">Editing</span>
+          </div>
+        </div>
+
+        <p class="text-sm font-mono text-amber-400/90 tracking-wide">
+          ⚡ A simple event reel today can become the foundation for a much bigger creative journey tomorrow.
+        </p>
+
+      </div>
+    </section>
+
+    <section id="about" class="py-24 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest">02 — About</span>
+            <div class="h-[1px] w-12 bg-amber-500/40"></div>
+          </div>
+          <span class="text-sm font-semibold tracking-wider text-gray-400 uppercase">Who We Are</span>
+          <h2 class="font-mono text-3xl sm:text-5xl font-extrabold text-white uppercase tracking-tight mt-1 max-w-3xl leading-tight">
+            A Creative Club Built Around Content, Craft, and Filmmaking.
+          </h2>
+          <p class="mt-6 text-gray-300 max-w-3xl text-base sm:text-lg leading-relaxed">
+            Pixel Pirates is a student-driven creative club focused on <span class="text-amber-400 font-medium">content creation, filmmaking, visual storytelling, and digital creativity</span>. We create content to promote and document college events, but our purpose goes beyond producing videos or social posts. Every production is an opportunity to understand how professional work is planned, scripted, shot, edited, and presented.
+          </p>
+        </div>
+
+        <!-- Vision & Missions -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+          <div class="lg:col-span-5 p-8 rounded-2xl bg-gradient-to-br from-pirate-card to-pirate-dark border border-amber-500/30 relative flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </div>
+              <span class="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">Our Vision</span>
+              <h3 class="font-mono text-2xl font-bold text-white uppercase mt-2 mb-4 leading-snug">
+                Build Better Creators Through Filmmaking.
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Our vision is to create a creative ecosystem where students produce professional-quality content while developing a strong foundation in filmmaking and visual storytelling.
+              </p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-pirate-border/60 text-xs font-mono text-gray-500">
+              PERI IT CREATIVE FOUNDATION
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 rounded-xl bg-pirate-card border border-pirate-border">
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block mb-1">01 // MISSION</span>
+              <h4 class="text-lg font-mono font-bold text-white uppercase mb-2">CREATE</h4>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Produce meaningful, professional-quality content for college events and activities.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-pirate-card border border-pirate-border">
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block mb-1">02 // MISSION</span>
+              <h4 class="text-lg font-mono font-bold text-white uppercase mb-2">LEARN</h4>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Continuously explore and practice filmmaking, storytelling, cinematography, and editing.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-pirate-card border border-pirate-border">
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block mb-1">03 // MISSION</span>
+              <h4 class="text-lg font-mono font-bold text-white uppercase mb-2">TEACH</h4>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Share knowledge, workflows, and practical skills with juniors and fellow members.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-pirate-card border border-pirate-border">
+              <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block mb-1">04 // MISSION</span>
+              <h4 class="text-lg font-mono font-bold text-white uppercase mb-2">BUILD</h4>
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Develop a structured, self-sustaining creative team capable of handling productions independently.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Guiding Questions -->
+        <div class="p-8 sm:p-12 rounded-3xl bg-pirate-card/70 border border-pirate-border relative overflow-hidden">
+          <div class="max-w-3xl">
+            <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold block mb-2">Our Belief</span>
+            <h3 class="font-mono text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tight mb-4">
+              Content Is More Than A Camera.
+            </h3>
+            <p class="text-gray-300 text-base sm:text-lg mb-6 leading-relaxed">
+              A camera can capture a moment. A filmmaker understands <strong class="text-amber-400">how to present that moment as a story</strong>.
+            </p>
+
+            <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-4 font-semibold">
+              Before creating anything, we ask:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q1</span>
+                <span class="text-sm text-gray-200">What are we trying to say?</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q2</span>
+                <span class="text-sm text-gray-200">Why are we showing this shot?</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q3</span>
+                <span class="text-sm text-gray-200">Where should the camera be?</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q4</span>
+                <span class="text-sm text-gray-200">What should the audience see?</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q5</span>
+                <span class="text-sm text-gray-200">How should the story flow?</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-pirate-dark/60 border border-pirate-border/60">
+                <span class="text-amber-400 font-mono text-xs font-bold">Q6</span>
+                <span class="text-sm text-gray-200">What should the audience feel?</span>
+              </div>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+              <p class="font-mono text-lg font-bold text-white">
+                "To be a great content creator, you need to understand filmmaking."
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="create" class="py-24 bg-pirate-dark/50 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest">03 — What We Create</span>
+          <div class="h-[1px] w-12 bg-amber-500/40"></div>
+        </div>
+        <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-2">
+          Six Creative Areas.
+        </h2>
+        <p class="font-mono text-lg sm:text-xl text-amber-400 uppercase tracking-wide mb-12">
+          One Production Mindset.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+          <!-- 01 Event Films -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">01</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Event Films
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Promotional videos, highlights, aftermovies, and event recaps crafted with cinematic energy.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #AFTERMOVIES #TEASERS
+            </div>
+          </div>
+
+          <!-- 02 Social Media Content -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">02</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Social Media Content
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Short-form videos, reels, and digital campaigns engineered for maximum engagement and retention.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #REELS #SHORTS #VIRAL
+            </div>
+          </div>
+
+          <!-- 03 Design -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">03</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Design
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                High-impact posters, thumbnails, branding identity, and social-media graphic systems.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #GRAPHICS #POSTERS #IDENTITY
+            </div>
+          </div>
+
+          <!-- 04 Photography -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">04</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Photography
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Event, portrait, editorial, and behind-the-scenes documentary coverage captured with mood and precision.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #PORTRAITS #BTS #COVERAGE
+            </div>
+          </div>
+
+          <!-- 05 Visual Storytelling -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">05</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Visual Storytelling
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Short films, documentaries, interviews, narrative pieces, and emotional student-driven stories.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #SHORTFILMS #DOCS #INTERVIEWS
+            </div>
+          </div>
+
+          <!-- 06 Digital Creative Work -->
+          <div class="p-8 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/50 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <span class="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">06</span>
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+              </div>
+              <h3 class="font-mono text-xl font-bold text-white uppercase mb-2 group-hover:text-amber-400 transition-colors">
+                Digital Creative Work
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Web experiences, interactive design, creative technology, generative experiments, and projection mapping.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-pirate-border/50 text-xs font-mono text-gray-500">
+              #CREATIVETECH #WEB #AIART
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="process" class="py-24 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest block mb-2">04 — Our Process</span>
+          <p class="text-sm font-semibold tracking-wider text-gray-400 uppercase">From Idea to Final Frame</p>
+          <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mt-1 mb-3">
+            Professional Content Isn't Simply Recorded.
+          </h2>
+          <p class="font-mono text-xl sm:text-2xl text-amber-400 font-extrabold uppercase">
+            It's Built Step by Step.
+          </p>
+        </div>
+
+        <!-- 6 Step Pipeline -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">01</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Idea & Purpose</h3>
+            <p class="text-sm text-gray-400">Define what we want to communicate, why it matters, and who needs to experience it.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 1 // CONCEPT</div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">02</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Story & Script</h3>
+            <p class="text-sm text-gray-400">Build the narrative arc, write the dialogue or voiceover, and structure each section.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 2 // NARRATIVE</div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">03</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Shot Planning</h3>
+            <p class="text-sm text-gray-400">Decide what needs to be captured and how. Create shot lists, framing guides, and lighting plans.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 3 // PRE-VIZ</div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">04</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Filming</h3>
+            <p class="text-sm text-gray-400">Bring the planned visuals to life on location with intentional lighting, camera moves, and clean audio.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 4 // ON SET</div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">05</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Editing & Review</h3>
+            <p class="text-sm text-gray-400">Shape the footage, refine pacing, add color grading, sound design, and improve the final cut.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 5 // POST-PROD</div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border relative hover:border-amber-500/50 transition-all">
+            <div class="text-3xl font-mono font-black text-amber-500/30 mb-2">06</div>
+            <h3 class="font-mono text-lg font-bold text-white uppercase mb-2">Final Content</h3>
+            <p class="text-sm text-gray-400">Deliver content formatted perfectly for its target platform, audience, and premiere date.</p>
+            <div class="mt-4 text-xs font-mono text-amber-400/80">STEP 6 // RELEASE</div>
+          </div>
+        </div>
+
+        <!-- Interactive Quality Benchmark -->
+        <div class="p-8 sm:p-12 rounded-3xl bg-pirate-dark border border-pirate-border">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-5 space-y-4">
+              <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">Our Standard</span>
+              <h3 class="font-mono text-3xl sm:text-4xl font-extrabold text-white uppercase leading-tight">
+                Don't Just Finish It. <br/><span class="text-amber-400">Improve It.</span>
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Before delivering content, we review the work with rigor. The difference between <em class="text-gray-200">finished</em> and <em class="text-amber-400 font-semibold">good</em> is found in this exact review process.
+              </p>
+              <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border text-xs font-mono text-gray-300">
+                <span class="text-amber-400 font-bold block mb-1">THE BENCHMARK:</span>
+                "The goal isn't simply to complete a project. The goal is to make the next version better."
+              </div>
+            </div>
+
+            <!-- Pre-Delivery Review Interactive Tool -->
+            <div class="lg:col-span-7 bg-pirate-card/90 p-6 rounded-2xl border border-pirate-border">
+              <div class="flex items-center justify-between mb-4 pb-3 border-b border-pirate-border">
+                <span class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">Interactive Review Checklist</span>
+                <span id="review-counter" class="text-xs font-mono px-2 py-0.5 rounded bg-pirate-dark text-amber-400 border border-amber-500/30">0 / 6 Passed</span>
+              </div>
+
+              <div class="space-y-3">
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Is the story clear?</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Is the framing intentional?</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Are the shots meaningful?</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Does the edit have proper pacing?</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Does the audio support the content?</span>
+                </label>
+                <label class="flex items-center gap-3 p-3 rounded-xl bg-pirate-dark/60 hover:bg-pirate-dark cursor-pointer transition-colors border border-pirate-border/40">
+                  <input type="checkbox" onchange="updateReviewChecklist()" class="checklist-item rounded border-pirate-border text-amber-500 focus:ring-amber-500 w-4 h-4 bg-pirate-card">
+                  <span class="text-sm text-gray-300 font-medium">Can we improve anything before publishing?</span>
+                </label>
+              </div>
+
+              <div id="review-status-box" class="mt-4 p-3 rounded-xl bg-pirate-dark/80 text-xs font-mono text-gray-400 border border-pirate-border flex items-center justify-between">
+                <span>STATUS: IN PROGRESS</span>
+                <span class="text-amber-500">AWAITING REVIEW</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="learn" class="py-24 bg-pirate-dark/40 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest">05 — Learning</span>
+          <div class="h-[1px] w-12 bg-amber-500/40"></div>
+        </div>
+        <span class="text-sm font-semibold tracking-wider text-gray-400 uppercase">Our Learning Culture</span>
+        <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mt-1 mb-8 max-w-2xl">
+          Knowledge Should Keep Moving.
+        </h2>
+
+        <!-- Movement Strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-16 text-center font-mono">
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border">
+            <span class="text-xs text-amber-400 block mb-1">01</span>
+            <span class="text-sm font-bold text-white uppercase">We Learn</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border">
+            <span class="text-xs text-amber-400 block mb-1">02</span>
+            <span class="text-sm font-bold text-white uppercase">We Experiment</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border">
+            <span class="text-xs text-amber-400 block mb-1">03</span>
+            <span class="text-sm font-bold text-white uppercase">We Make Mistakes</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border">
+            <span class="text-xs text-amber-400 block mb-1">04</span>
+            <span class="text-sm font-bold text-white uppercase">We Review</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border">
+            <span class="text-xs text-amber-400 block mb-1">05</span>
+            <span class="text-sm font-bold text-white uppercase">We Improve</span>
+          </div>
+          <div class="p-4 rounded-xl bg-pirate-card border border-amber-500/50 bg-amber-500/10">
+            <span class="text-xs text-amber-400 block mb-1">06</span>
+            <span class="text-sm font-bold text-amber-400 uppercase">We Share</span>
+          </div>
+        </div>
+
+        <!-- 5 Stages Leadership Pipeline -->
+        <div class="p-8 sm:p-12 rounded-3xl bg-pirate-black border border-amber-500/20 relative">
+          <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold block mb-2">Leadership Pipeline</span>
+          <h3 class="font-mono text-2xl sm:text-4xl font-extrabold text-white uppercase tracking-tight mb-4">
+            Pass The Knowledge Forward.
+          </h3>
+          <p class="text-gray-300 text-sm sm:text-base max-w-2xl mb-8 leading-relaxed">
+            When seniors graduate, juniors shouldn't have to start from zero. Members grow through a clear, empowering creative journey:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            <div class="p-5 rounded-2xl bg-pirate-card border border-pirate-border">
+              <div class="font-mono text-xs text-amber-500 font-bold mb-1">STAGE 01</div>
+              <h4 class="font-mono text-base font-bold text-white uppercase mb-2">Learner</h4>
+              <p class="text-xs text-gray-400 leading-relaxed">Discover the fundamentals of filmmaking, cameras, and software.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-pirate-card border border-pirate-border">
+              <div class="font-mono text-xs text-amber-500 font-bold mb-1">STAGE 02</div>
+              <h4 class="font-mono text-base font-bold text-white uppercase mb-2">Creator</h4>
+              <p class="text-xs text-gray-400 leading-relaxed">Apply emerging skills through actual shoots and live assignments.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-pirate-card border border-pirate-border">
+              <div class="font-mono text-xs text-amber-500 font-bold mb-1">STAGE 03</div>
+              <h4 class="font-mono text-base font-bold text-white uppercase mb-2">Team Member</h4>
+              <p class="text-xs text-gray-400 leading-relaxed">Collaborate and contribute as key crew on college productions.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-pirate-card border border-pirate-border">
+              <div class="font-mono text-xs text-amber-500 font-bold mb-1">STAGE 04</div>
+              <h4 class="font-mono text-base font-bold text-white uppercase mb-2">Leader</h4>
+              <p class="text-xs text-gray-400 leading-relaxed">Take operational responsibility, direct crew, and guide projects.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-pirate-card border border-amber-500/40 bg-amber-500/5">
+              <div class="font-mono text-xs text-amber-400 font-bold mb-1">STAGE 05</div>
+              <h4 class="font-mono text-base font-bold text-amber-400 uppercase mb-2">Mentor</h4>
+              <p class="text-xs text-gray-300 leading-relaxed">Share experience and develop the upcoming generations of creators.</p>
+            </div>
+          </div>
+
+          <blockquote class="text-center font-mono text-sm sm:text-base text-gray-300 italic border-t border-pirate-border/60 pt-6">
+            "Every generation should leave the next generation stronger than they found it."
+          </blockquote>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="activities" class="py-24 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest">06 — Activities</span>
+          <div class="h-[1px] w-12 bg-amber-500/40"></div>
+        </div>
+        <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-2">
+          How We Learn And Create, Together.
+        </h2>
+        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mb-12">
+          Our activities turn ideas and knowledge into practical experience across the campus and beyond.
+        </p>
+
+        <!-- Activities Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#01 // WORKSHOPS</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Workshops</h3>
+            <p class="text-sm text-gray-400">Hands-on sessions covering filmmaking fundamentals, advanced editing, color grading, design systems, and generative AI tools.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#02 // CHALLENGES</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Creative Challenges</h3>
+            <p class="text-sm text-gray-400">Short, fast-paced projects designed to spark experimentation, unconventional angles, and creative problem solving under constraints.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#03 // LIVE SETS</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Event Productions</h3>
+            <p class="text-sm text-gray-400">Real opportunities to plan, direct, record, and edit high-profile content for official college events and symposiums.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#04 // FILMMAKING</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Filmmaking Sessions</h3>
+            <p class="text-sm text-gray-400">Practical studio and outdoor work in cinematography, three-point lighting setups, gimbal operation, and audio recording.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#05 // COLLAB</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Creative Projects</h3>
+            <p class="text-sm text-gray-400">Collaborative projects beyond regular event coverage, including narrative shorts, conceptual reels, and visual essays.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-pirate-card border border-pirate-border hover:border-amber-500/40 transition-all">
+            <span class="font-mono text-xs font-bold text-amber-400 block mb-2">#06 // MENTORSHIP</span>
+            <h3 class="font-mono text-xl font-bold text-white uppercase mb-2">Knowledge Sharing</h3>
+            <p class="text-sm text-gray-400">Regular senior-junior sessions focused on practical workflows, real critique, software shortcuts, and troubleshooting.</p>
+          </div>
+        </div>
+
+        <!-- Visual Activities Archive -->
+        <div class="hidden">
+          <div class="flex items-center justify-between mb-8 pb-4 border-b border-pirate-border">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold block">Visual Archive</span>
+              <h3 class="font-mono text-2xl sm:text-3xl font-bold text-white uppercase">Activities Gallery</h3>
+            </div>
+            <span class="text-xs font-mono text-gray-400 hidden sm:block">6 ACTIVE DISCIPLINES</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-amber-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">Workshops & AI Sessions</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Workshops</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400">STUDIO</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-red-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-red-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">Cinematography & Rigging</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Filmmaking</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-500/10 text-red-400">PRODUCTION</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-cyan-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">48-Hour Speed Renders</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Creative Challenges</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400">SPRINT</span>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-purple-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-purple-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">Campus Culturals & Live Sets</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Event Productions</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400">CAMPUS LIVE</span>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-blue-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">DaVinci & Sound Suites</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Editing Sessions</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400">POST-LAB</span>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="group relative rounded-2xl overflow-hidden bg-pirate-card border border-pirate-border hover:border-amber-500/60 transition-all">
+              <div class="aspect-video w-full bg-gradient-to-br from-emerald-950/40 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                </div>
+                <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">[PHOTO / VIDEO]</span>
+                <span class="text-xs text-gray-400 mt-1 font-mono">Crew Nights & Screenings</span>
+              </div>
+              <div class="p-4 bg-pirate-card/90 border-t border-pirate-border/60 flex items-center justify-between">
+                <span class="font-mono font-bold text-sm text-white uppercase">Team Activities</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">COMMUNITY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="team" class="py-24 bg-pirate-dark/30 border-b border-pirate-border/40 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="flex items-center justify-center gap-3 mb-2">
+            <span class="font-mono text-xs text-amber-500 font-bold uppercase tracking-widest">07 — Team</span>
+          </div>
+          <span class="text-sm font-semibold tracking-wider text-gray-400 uppercase">Meet the Team</span>
+          <h2 class="font-mono text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mt-1 mb-4">
+            The People Behind Pixel Pirates.
+          </h2>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+            Pixel Pirates is built by students who create, learn, collaborate, and take responsibility together.
+          </p>
+        </div>
+
+        <!-- 1. LEADERSHIP -->
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-8">
+            <h3 class="font-mono text-xs font-bold text-amber-500 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30">
+              LEADERSHIP
+            </h3>
+            <div class="h-[1px] flex-1 bg-pirate-border/60"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <!-- Sanjay S -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300 shadow-lg">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/30 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-24 h-24 rounded-full bg-white/5 border-2 border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform duration-300">
+                  <svg class="w-12 h-12 text-amber-500/60" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="font-mono text-xl font-bold text-white uppercase tracking-tight">SANJAY S</h4>
+                <p class="text-sm font-semibold text-amber-400 mt-1">President</p>
+              </div>
+            </div>
+
+            <!-- Thirukumaran K -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300 shadow-lg">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/30 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-24 h-24 rounded-full bg-white/5 border-2 border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform duration-300">
+                  <svg class="w-12 h-12 text-amber-500/60" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="font-mono text-xl font-bold text-white uppercase tracking-tight">THIRUKUMARAN K</h4>
+                <p class="text-sm font-semibold text-amber-400 mt-1">Vice President</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SECRETARIAL TEAM -->
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-8">
+            <h3 class="font-mono text-xs font-bold text-amber-500 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30">
+              SECRETARIAL TEAM
+            </h3>
+            <div class="h-[1px] flex-1 bg-pirate-border/60"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Joe K R -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">JOE K R</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Secretary</p>
+              </div>
+            </div>
+
+            <!-- R. Narmatha -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">R. NARMATHA</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Secretary</p>
+              </div>
+            </div>
+
+            <!-- Pravin M -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">PRAVIN M</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Student Secretary</p>
+              </div>
+            </div>
+
+            <!-- Sowmiya SP -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">SOWMIYA SP</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Student Secretary</p>
+              </div>
+            </div>
+
+            <!-- Vedha Darshini S -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">VEDHA DARSHINI S</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Student Secretary</p>
+              </div>
+            </div>
+
+            <!-- Raghav Raj S -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">RAGHAV RAJ S</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Student Secretary</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. TREASURY -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <h3 class="font-mono text-xs font-bold text-amber-500 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30">
+              TREASURY
+            </h3>
+            <div class="h-[1px] flex-1 bg-pirate-border/60"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <!-- Vishnuprasath C -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300 shadow-lg">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] font-mono text-gray-500 tracking-widest mt-4">[PHOTO]</span>
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">VISHNUPRASATH C</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Treasury</p>
+              </div>
+            </div>
+
+            <!-- Mohammad Salmon K -->
+            <div class="rounded-2xl bg-pirate-card border border-pirate-border overflow-hidden group hover:border-amber-500/60 transition-all duration-300 shadow-lg">
+              <div class="aspect-square bg-gradient-to-b from-pirate-border/20 via-pirate-card to-pirate-dark flex flex-col items-center justify-center p-6 border-b border-pirate-border/80">
+                <img src="/Mohammad%20Salmon%20K%20(1).png" alt="Mohammad Salmon K" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="p-5 text-center">
+                <h4 class="font-mono text-lg font-bold text-white uppercase tracking-tight">MOHAMMAD SALMON K</h4>
+                <p class="text-xs font-medium text-amber-400 mt-1">Treasury</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="join" class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 cinema-gradient pointer-events-none opacity-80"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold block mb-2">08 — Join Us</span>
+        <p class="text-sm font-semibold tracking-wider text-gray-400 uppercase">Ready To Create?</p>
+        <h2 class="font-mono text-4xl sm:text-6xl font-black text-white uppercase tracking-tight mt-1 mb-6">
+          Become Part of <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">Pixel Pirates</span>.
+        </h2>
+        
+        <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed">
+          Whether you're interested in filmmaking, editing, photography, design, storytelling, or digital creativity, Pixel Pirates is a place to <strong class="text-white">learn, experiment, create, and contribute</strong>.
+        </p>
+
+        <div class="font-mono text-2xl sm:text-3xl font-black text-white tracking-widest uppercase mb-10 flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
+          <span>CREATE.</span>
+          <span class="text-amber-500">·</span>
+          <span>LEARN.</span>
+          <span class="text-amber-500">·</span>
+          <span>TEACH.</span>
+          <span class="text-amber-500">·</span>
+          <span>BUILD.</span>
+        </div>
+
+        <div>
+          <button onclick="openJoinModal()" class="px-10 py-5 rounded-2xl font-mono text-base uppercase tracking-wider font-extrabold bg-gradient-to-r from-amber-500 to-amber-600 text-pirate-black hover:brightness-110 shadow-xl shadow-amber-500/30 active:scale-95 transition-all">
+            Join Pixel Pirates
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-pirate-dark border-t border-pirate-border/60 relative z-10 pt-16 pb-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-pirate-border/60">
+        
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-pirate-card border border-amber-500/40 p-1 flex items-center justify-center overflow-hidden shadow-lg shadow-amber-500/10">
+              <img 
+                src="pixel_pirates_vector.svg"
+                alt="Pixel Pirates" 
+                class="w-full h-full object-contain"
+                onerror="this.onerror=null; const mark=document.createElement('span'); mark.className='pixel-pirates-fallback'; mark.textContent='PP'; mark.setAttribute('role','img'); mark.setAttribute('aria-label','Pixel Pirates'); this.replaceWith(mark);"
+              >
+            </div>
+            <div>
+              <h4 class="font-mono text-lg font-bold text-white tracking-wider">PIXEL PIRATES</h4>
+              <p class="text-xs font-mono text-amber-400">Digital Creativity & Filmmaking Club</p>
+            </div>
+          </div>
+          <p class="text-xs font-mono text-gray-400 uppercase tracking-wide">
+            PERI Institute of Technology
+          </p>
+          <div class="pt-2 text-sm text-gray-300 space-y-1">
+            <p class="font-medium text-white">We create content for today.</p>
+            <p class="text-amber-400 font-medium">We learn filmmaking for tomorrow.</p>
+          </div>
+          <p class="text-xs text-gray-400 italic">
+            Create with purpose. · Learn the craft. · Pass it forward.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-2">
+          <span class="font-mono text-xs font-bold text-white uppercase tracking-wider block mb-3">Navigation</span>
+          <ul class="text-xs font-mono space-y-2 text-gray-400">
+            <li><a href="#home" class="hover:text-amber-400 transition-colors">01 — Home</a></li>
+            <li><a href="#about" class="hover:text-amber-400 transition-colors">02 — About Us</a></li>
+            <li><a href="#create" class="hover:text-amber-400 transition-colors">03 — What We Create</a></li>
+            <li><a href="#process" class="hover:text-amber-400 transition-colors">04 — Our Process</a></li>
+            <li><a href="#learn" class="hover:text-amber-400 transition-colors">05 — Learning Cycle</a></li>
+            <li><a href="#activities" class="hover:text-amber-400 transition-colors">06 — Activities</a></li>
+            <li><a href="#team" class="hover:text-amber-400 transition-colors">07 — Team</a></li>
+            <li><a href="#join" class="hover:text-amber-400 transition-colors">08 — Join Us</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-4">
+          <span class="font-mono text-xs font-bold text-white uppercase tracking-wider block">Motto</span>
+          <div class="p-4 rounded-xl bg-pirate-card border border-pirate-border text-xs text-gray-300 font-mono leading-relaxed">
+            "Stay creative. Keep exploring. Keep creating. 🎨"
+            <div class="text-amber-400 mt-2 font-bold">— Pixel Pirates Club</div>
+          </div>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="inline-flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-white transition-colors">
+            <span>Back to top</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-gray-500 gap-4">
+        <div>
+          © 2026 PIXEL PIRATES · PERI Institute of Technology
+        </div>
+        <div>
+          STORY · SCRIPT · FRAME · CAMERA · EDIT
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <div id="join-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="bg-pirate-dark border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      
+      <button onclick="closeJoinModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1 rounded-lg bg-pirate-card border border-pirate-border" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-pirate-card border border-amber-500/30 p-1.5 flex items-center justify-center overflow-hidden shadow-md shrink-0">
+          <img 
+            src="pixel_pirates_vector.svg"
+            alt="Logo" 
+            class="w-full h-full object-contain"
+            onerror="this.onerror=null; const mark=document.createElement('span'); mark.className='pixel-pirates-fallback'; mark.textContent='PP'; mark.setAttribute('role','img'); mark.setAttribute('aria-label','Pixel Pirates'); this.replaceWith(mark);"
+          >
+        </div>
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold block mb-0.5">Pixel Pirates Club</span>
+          <h3 class="font-mono text-2xl font-bold text-white uppercase">Application Form</h3>
+          <p class="text-xs text-gray-400 mt-0.5">Ready to craft intentional stories? Tell us about your creative interest.</p>
+        </div>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Full Name *</label>
+          <input type="text" required placeholder="e.g. John Doe" class="w-full px-4 py-2.5 rounded-xl bg-pirate-card border border-pirate-border text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 text-sm">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-300 mb-1">College Email / Reg No *</label>
+            <input type="text" required placeholder="student@peri.education" class="w-full px-4 py-2.5 rounded-xl bg-pirate-card border border-pirate-border text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Phone Number</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX" class="w-full px-4 py-2.5 rounded-xl bg-pirate-card border border-pirate-border text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Primary Creative Interest *</label>
+          <select required class="w-full px-4 py-2.5 rounded-xl bg-pirate-card border border-pirate-border text-white focus:outline-none focus:border-amber-500 text-sm">
+            <option value="" disabled selected>Select an interest area...</option>
+            <option value="cinematography">Filmmaking & Cinematography</option>
+            <option value="editing">Video Editing & Sound Design</option>
+            <option value="photography">Photography & BTS</option>
+            <option value="design">Graphic Design & Posters</option>
+            <option value="storytelling">Scriptwriting & Visual Storytelling</option>
+            <option value="tech">Digital Creative Tech & Web</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Portfolio or Social Link (Optional)</label>
+          <input type="url" placeholder="Instagram, Drive, YouTube, Behance, GitHub" class="w-full px-4 py-2.5 rounded-xl bg-pirate-card border border-pirate-border text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">What do you hope to create or learn?</label>
+          <textarea rows="3" placeholder="Share your motivation with the team..." class="w-full px-4 py-2 rounded-xl bg-pirate-card border border-pirate-border text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 text-sm"></textarea>
+        </div>
+
+        <div id="form-msg" class="hidden p-3 rounded-xl text-xs font-mono"></div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl font-mono text-sm uppercase tracking-wider font-bold bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:brightness-110 active:scale-98 transition-all shadow-lg shadow-amber-500/20">
+          Submit Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function updateThemeIcons(isDark) {
+      const desktopSun = document.getElementById('desktop-sun-icon');
+      const desktopMoon = document.getElementById('desktop-moon-icon');
+      const mobileSun = document.getElementById('mobile-sun-icon');
+      const mobileMoon = document.getElementById('mobile-moon-icon');
+
+      if (isDark) {
+        if (desktopSun) desktopSun.classList.remove('hidden');
+        if (desktopMoon) desktopMoon.classList.add('hidden');
+        if (mobileSun) mobileSun.classList.remove('hidden');
+        if (mobileMoon) mobileMoon.classList.add('hidden');
+      } else {
+        if (desktopSun) desktopSun.classList.add('hidden');
+        if (desktopMoon) desktopMoon.classList.remove('hidden');
+        if (mobileSun) mobileSun.classList.add('hidden');
+        if (mobileMoon) mobileMoon.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('pixel_pirates_theme', isDark ? 'dark' : 'light');
+      updateThemeIcons(isDark);
+    }
+
+    // Sync theme icons on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      updateThemeIcons(isDark);
+    });
+
+    // Navigation toggling
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/';
+      }
+    }
+
+    // Modal controls
+    function openJoinModal() {
+      const modal = document.getElementById('join-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeJoinModal() {
+      const modal = document.getElementById('join-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('join-modal');
+      if (e.target === modal) {
+        closeJoinModal();
+      }
+    });
+
+    // Interactive Pre-Delivery Checklist
+    function updateReviewChecklist() {
+      const checkboxes = document.querySelectorAll('.checklist-item');
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) checkedCount++;
+      });
+
+      const counter = document.getElementById('review-counter');
+      const statusBox = document.getElementById('review-status-box');
+
+      counter.textContent = `${checkedCount} / ${checkboxes.length} Passed`;
+
+      if (checkedCount === checkboxes.length) {
+        counter.className = 'text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/50';
+        statusBox.innerHTML = `
+          <span class="text-emerald-400 font-bold">STATUS: PRODUCTION APPROVED!</span>
+          <span class="text-emerald-400">READY TO PUBLISH 🎬</span>
+        `;
+        statusBox.className = 'mt-4 p-3 rounded-xl bg-emerald-950/40 text-xs font-mono border border-emerald-500/40 flex items-center justify-between';
+      } else {
+        counter.className = 'text-xs font-mono px-2 py-0.5 rounded bg-pirate-dark text-amber-400 border border-amber-500/30';
+        statusBox.innerHTML = `
+          <span>STATUS: IN PROGRESS</span>
+          <span class="text-amber-500">${checkboxes.length - checkedCount} CHECKS REMAINING</span>
+        `;
+        statusBox.className = 'mt-4 p-3 rounded-xl bg-pirate-dark/80 text-xs font-mono text-gray-400 border border-pirate-border flex items-center justify-between';
+      }
+    }
+
+    // Modal Form submission handler with visual inline feedback
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const msgBox = document.getElementById('form-msg');
+      msgBox.className = 'p-3 rounded-xl text-xs font-mono bg-amber-500/10 border border-amber-500 text-amber-500 block';
+      msgBox.textContent = 'Welcome aboard! Your application has been logged with the Secretarial Team. We will reach out to you soon.';
+      
+      setTimeout(() => {
+        event.target.reset();
+        setTimeout(() => {
+          closeJoinModal();
+          msgBox.className = 'hidden';
+        }, 1200);
+      }, 800);
+    }
+
+    // Elevated navbar on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (window.scrollY > 40) {
+        header.classList.add('shadow-2xl', 'bg-pirate-black/95');
+      } else {
+        header.classList.remove('shadow-2xl');
+      }
+    });
+
+    // Open any team member in a centered spotlight card.
+    const teamCards = document.querySelectorAll('#team .group');
+    const spotlightBackdrop = document.createElement('div');
+    spotlightBackdrop.className = 'member-spotlight-backdrop';
+    spotlightBackdrop.setAttribute('role', 'dialog');
+    spotlightBackdrop.setAttribute('aria-modal', 'true');
+    spotlightBackdrop.innerHTML = '<div class="member-spotlight-card"><button class="member-spotlight-close" type="button" aria-label="Close member details">&times;</button><div class="member-spotlight-content"></div></div>';
+    document.body.appendChild(spotlightBackdrop);
+
+    const spotlightContent = spotlightBackdrop.querySelector('.member-spotlight-content');
+    const closeMemberSpotlight = () => {
+      spotlightBackdrop.classList.remove('is-open');
+      document.body.classList.remove('member-spotlight-open');
+      document.body.style.overflow = '';
+    };
+
+    teamCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const cardImage = card.querySelector(':scope > div:first-child');
+        const titleElement = card.querySelector('h4');
+        const roleElement = card.querySelector('p');
+        const title = titleElement ? titleElement.textContent : 'Team member';
+        const role = roleElement ? roleElement.textContent : '';
+        const cardImageMarkup = cardImage ? cardImage.innerHTML : '';
+        spotlightContent.innerHTML = `<div class="member-spotlight-image">${cardImageMarkup}</div><div class="member-spotlight-copy"><h4>${title}</h4><p>${role}</p><div class="mt-4 text-sm leading-relaxed text-gray-300">A creative contributor helping Pixel Pirates learn, create, and build together.</div></div>`;
+        spotlightBackdrop.classList.add('is-open');
+        document.body.classList.add('member-spotlight-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    spotlightBackdrop.querySelector('.member-spotlight-close').addEventListener('click', closeMemberSpotlight);
+    spotlightBackdrop.addEventListener('click', (event) => {
+      if (event.target === spotlightBackdrop) closeMemberSpotlight();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMemberSpotlight();
+    });
+
+    // Stagger visible headings, copy and cards as each section enters view.
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('cinematic-motion-ready');
+
+      const revealTargets = [];
+      const sections = [...document.querySelectorAll('main section')];
+      sections.forEach((section) => {
+        section.querySelectorAll('h1, h2, h3').forEach((element, index) => {
+          element.classList.add('cinematic-reveal', 'cinematic-reveal-headline');
+          element.style.transitionDelay = `${140 + index * 170}ms`;
+          revealTargets.push(element);
+        });
+
+        section.querySelectorAll('.grid > div').forEach((element, index) => {
+          element.classList.add('cinematic-reveal', 'cinematic-reveal-card');
+          element.style.transitionDelay = `${220 + index * 135}ms`;
+          revealTargets.push(element);
+        });
+
+        section.querySelectorAll('p, blockquote').forEach((element, index) => {
+          element.classList.add('cinematic-reveal');
+          element.style.transitionDelay = `${300 + index * 105}ms`;
+          revealTargets.push(element);
+        });
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      revealTargets.forEach((element) => revealObserver.observe(element));
+
+      const ambientLayers = document.body.firstElementChild;
+      const backgroundLayers = ambientLayers ? [...ambientLayers.children] : [];
+      backgroundLayers.forEach((layer) => layer.classList.add('cinematic-bg-drift'));
+
+      const ambientGlow = document.querySelector('.cinematic-section-glow');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+        if (activeEntry && ambientGlow) {
+          const rect = activeEntry.target.getBoundingClientRect();
+          const glowY = Math.max(60, Math.min(window.innerHeight - 60, rect.top + rect.height * 0.35));
+          ambientGlow.style.setProperty('--glow-y', `${glowY}px`);
+          ambientGlow.classList.add('is-active');
+        }
+      }, { threshold: [0.12, 0.3, 0.55] });
+
+      sections.forEach((section) => sectionObserver.observe(section));
+
+      let parallaxFrame = 0;
+      const updateBackgroundDrift = () => {
+        cancelAnimationFrame(parallaxFrame);
+        parallaxFrame = requestAnimationFrame(() => {
+          backgroundLayers.forEach((layer, index) => {
+            const offset = Math.min(window.scrollY * (0.004 + index * 0.002), 64);
+            layer.style.transform = `translate3d(0, ${-offset}px, 0)`;
+          });
+        });
+      };
+
+      updateBackgroundDrift();
+      window.addEventListener('scroll', updateBackgroundDrift, { passive: true });
+      window.addEventListener('resize', updateBackgroundDrift);
+    }
+  </script>
+</body>
+</html>

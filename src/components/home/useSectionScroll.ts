@@ -1,5 +1,6 @@
+import type { MotionValue } from "@/lib/motion";
 import { useEffect, useState, type RefObject } from "react";
-import { useScroll, useSpring, type MotionValue } from "motion/react";
+import { useScroll, useSpring } from "@/lib/motion";
 
 /**
  * Scroll-position driven progress for a section.

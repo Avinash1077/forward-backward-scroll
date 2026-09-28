@@ -1,5 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { useRef } from "react";
-import { motion, useTransform, type MotionValue } from "motion/react";
+import { motion, useTransform, type MotionValue } from "@/lib/motion";
 import { useSectionScroll } from "./useSectionScroll";
 
 function Card({
@@ -94,14 +95,24 @@ export function ClubPreview({
               <Card key={t} p={p} index={i} title={t} />
             ))}
           </ul>
-          <a
-            href={href}
-            className="mt-9 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
-          >
-            {cta}
-          </a>
+          {href.startsWith("/") && !href.endsWith(".html") ? (
+            <Link
+              to={href}
+              className="mt-9 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
+            >
+              {cta}
+            </Link>
+          ) : (
+            <a
+              href={href}
+              className="mt-9 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
+            >
+              {cta}
+            </a>
+          )}
         </motion.div>
       </div>
     </section>
   );
 }
+
