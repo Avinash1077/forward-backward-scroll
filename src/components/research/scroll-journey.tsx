@@ -141,7 +141,7 @@ function JourneyNode({
         height={radius * 2}
         className="journey-node-icon-container"
       >
-        <div className="flex items-center justify-center w-full h-full text-gold">
+        <div className="flex items-center justify-center w-full h-full journey-loading">
           <Icon size={radius} strokeWidth={2} />
         </div>
       </foreignObject>
